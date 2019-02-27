@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/style.css">
+	
+	<!-- libs -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	
+	<!-- js -->
+	<script src="./src/collatz_conjecture/collatz_conjecture.js"></script>
+	<script src="./src/repeated_letters/repeated_letters.js"></script>
+	<script src="./src/main.js"></script>
+	
+	<script>
+		$(function () {
+            $('#letter_count_content').hide();
+            $('#collatz_content').show();
+			$('#conjecture_collatz_number').focus();
+			
+            $('#collatz_button').click(() => {
+                $('#letter_count_content').hide();
+                $('#collatz_content').show();
+				$('#conjecture_collatz_number').focus();
+            });
+
+            $('#count_letters_button').click(() => {
+                $('#collatz_content').hide();               
+                $('#letter_count_content').show();
+				$('#count_letters_word').focus();
+            });
+        });
+	</script>
+  </head>
+	<body>
+		<div class="container">
+			<nav>
+				<ul>
+					<button id="count_letters_button" class="btn btn-light btn-sm">Contador de Letras</button>
+					<button id="collatz_button" class="btn btn-success btn-sm">Conjectura de Collatz</button>
+				</ul>
+			</nav>
+			<div id="collatz_content" class="row main-content">
+				<div class="col-sm-12">
+				  <h1>Calculadora Collatz</h1>
+				</div>
+				<div class="col-sm-12">
+				  <form class="form" name="form" onsubmit="return false" novalidate>
+					<div class="form-group">
+					   <label>Digite o número</label>
+					   <input id="collatz_number" name="collatz_number" min="1" step="1" class="form-control" autofocus required>
+					   <small id="collatz_number_help" class="form-text  message-error" hidden>Você deve digitar apenas números maiores que 1</small>
+					</div>
+					<h3>Resultados</h3>
+					<div class="form-group">
+					  Número que gera menor sequência: <input id="collatz_max_number" type="text" class="form-control" disabled>
+					  Tamanho da sequência: <input id="collatz_sequence_size" type="text" class="form-control" disabled>
+					</div>
+
+					<div class="form-group" >
+						<h3>Informações:</h3>
+						<p id="collatz_aditional_info" class="help-block"></p>
+					</div>
+
+					<button id="collatz_button_submit" class="btn btn-success btn-lg" type="submit" onClick="get_collatz_results(collatz_number)">
+						Ver Resultados
+					</button>
+
+				  </form>
+				</div>
+			</div>
+			
+			<div id="letter_count_content" class="row main-content">
+				<div class="col-sm-12">
+				  <h1>Contador de letras</h1>
+				  <!--<p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>-->
+				  <!--<p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>-->
+				</div>
+				<div class="col-sm-12">
+				  <form class="form" name="form" onsubmit="return false" return false" novalidate>
+					<div class="form-group">
+					   <label>Digite a palavra</label>
+					   <input id="count_letters_word" name="count_letters_word" class="form-control" required>
+					   <small id="letter_sequence_help" class="form-text message-error" hidden>Você deve digitar apenas palavras de tamanho maior que zero</small>
+					</div>
+					
+					<h3>Resultados </h3>
+					<div class="form-group">
+					  <label>Maiores sequências</label>
+					  <input type="text" id="letters_bigger_sequences" class="form-control" disabled>
+					</div>
+
+					<div class="form-group has-error">
+						<h3>Informações:</h3>
+						<p id="letters_aditional_info" class="help-block"></p>
+					</div>
+
+					<button id="letter_button_submit" class="btn btn-success btn-lg" type="submit" onClick="get_letter_count_results(count_letters_word)">
+						Ver Resultados
+					</button>
+
+				  </form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

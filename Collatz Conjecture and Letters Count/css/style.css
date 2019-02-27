@@ -1,0 +1,15 @@
+.main-content{
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-top: 8%;
+  margin-bottom: 2%;
+}
+
+button {
+    float: right;
+}
+
+.message-error{
+	color: red;
+}
+	
